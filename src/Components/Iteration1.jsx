@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import video from '../assets/video1.mp4'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-const Iteration1 = () => {
+const Iteration1 = ({option1}) => {
   const navigate = useNavigate()
   let [survey1, setSurvey1] = useState(false);
   const handleChange = (e)=>{
@@ -14,17 +14,27 @@ const Iteration1 = () => {
     })
   }
 
-  var form;
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec'
-  const submitForm = (e) =>{
-    e.preventDefault()
-    form = e.target;
-    console.log("submit")
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
+
+  // var form;
+  const submitForm = (e) => {
+    // e.preventDefault()
+    // form = e.target.option.value;
+    // option1(form)
+    // console.log(form)
     navigate('/test2')
   }
+
+  // var form;
+  // const scriptURL = 'https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec'
+  // const submitForm = (e) =>{
+  //   e.preventDefault()
+  //   form = e.target;
+  //   console.log("submit")
+  //   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  //       .then(response => console.log('Success!', response))
+  //       .catch(error => console.error('Error!', error.message))
+  //   navigate('/test2')
+  // }
   
   return (
     <div className='d-flex flex-column justify-content-center align-items-center w-100 pt-5 mt-5'>
@@ -51,13 +61,6 @@ const Iteration1 = () => {
       :
       <div>
         <p>1 What do you think?</p>
-        {/* <form action="" className='d-flex flex-column' id='mtForm' onSubmit={(e) => { submitForm(e)}}>
-            <span><input type="radio" name='a1' />&nbsp; She will be offered a deal that she asked for and she will accept the deal</span>
-            <span><input type="radio" name='b1' />&nbsp; She will be offered a deal that she asked for and she will accept the deal</span>
-            <span><input type="radio" name='c1' />&nbsp; She will be offered a deal that she asked for and she will accept the deal</span>
-            <span><input type="radio" name='d1' />&nbsp; She will be offered a deal that she asked for and she will accept the deal</span>
-            <div className=''><button type="submit" className='rounded-2 btn btn-info' >Submit</button></div>
-        </form> */}
 
               <form action="" className='d-flex flex-column' onSubmit={(e)=>{submitForm(e)}}>
                 <label>
@@ -74,7 +77,7 @@ const Iteration1 = () => {
                 </label>
                 <label>
                   <input type="radio" name="option" required value="d1" />
-                  She will not get any offers
+                  She will not get any offers
                 </label>
                 <div className=''><button type="submit" className='rounded-2 btn btn-info' >Submit</button></div>
               </form>
