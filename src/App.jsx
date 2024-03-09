@@ -6,6 +6,7 @@ import Iteration1 from './Components/Iteration1'
 import Iteration2 from './Components/Iteration2'
 import Final from './Components/Final'
 import Navbar from './Components/Navbar';
+import AudioRecorder from './Components/AudioRecorder';
 
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
           <Route path='/test1' element={<Iteration1/>}/>
           <Route path='/test2' element={<Iteration2/>}/>
           <Route path='/final' element={<Final/>}/>
+          <Route path='/audio' element={<AudioRecorder />} />
         </Routes>
+        
       </Router>
     </div>
   )
