@@ -6,6 +6,7 @@ import Iteration1 from './Components/Iteration1'
 import Iteration2 from './Components/Iteration2'
 import Final from './Components/Final'
 import Navbar from './Components/Navbar';
+import AudioRecorder from './Components/AudioRecorder';
 
 
 function App() {
@@ -30,7 +31,9 @@ function App() {
           <Route path='/test1' element={<Iteration1 option1={setOption1}/>}/>
           <Route path='/test2' element={<Iteration2 name={name} srn={srn} email={email} cls={cls} phone={phone} option1={option1} />}/>
           <Route path='/final' element={<Final/>}/>
+          <Route path='/audio' element={<AudioRecorder />} />
         </Routes>
+        
       </Router>
     </div>
   )

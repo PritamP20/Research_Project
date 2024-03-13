@@ -24,7 +24,7 @@ const Iteration2 = ({name, cls, srn, email, phone, option1}) => {
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
         .then(response => console.log('Success!', response))
         .catch(error => console.error('Error!', error.message))
-    navigate('/test2')
+    navigate('/audio')
   }
   
   return (
