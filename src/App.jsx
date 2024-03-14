@@ -11,6 +11,14 @@ import AudioRecorder from './Components/AudioRecorder';
 
 function App() {
   const [count, setCount] = useState(0)
+  
+  const [option1, setOption1] =useState()
+  const [option2, setOption2] =useState()
+  const [name, setName] = useState()
+  const [srn, setSrn] = useState()
+  const [email, setEmail] = useState()
+  const [cls, setCls] = useState()
+  const [phone, setPhone] = useState()
 
   return (
     <div>
@@ -18,10 +26,10 @@ function App() {
       <Router>
         <Navbar></Navbar>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home name={setName} srn={setSrn} email={setEmail} cls={setCls} phone={setPhone}  />}/>
           <Route path='/survey' element={<Survey/>}/> 
-          <Route path='/test1' element={<Iteration1/>}/>
-          <Route path='/test2' element={<Iteration2/>}/>
+          <Route path='/test1' element={<Iteration1 option1={setOption1}/>}/>
+          <Route path='/test2' element={<Iteration2 name={name} srn={srn} email={email} cls={cls} phone={phone} option1={option1} />}/>
           <Route path='/final' element={<Final/>}/>
           <Route path='/audio' element={<AudioRecorder />} />
         </Routes>

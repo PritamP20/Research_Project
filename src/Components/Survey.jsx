@@ -132,56 +132,26 @@ const Survey = () => {
 
     
     const formData = new FormData();
-    formData.append('question1', selectedOption1);
-    formData.append('question2', selectedOption2);
-    formData.append('question3', selectedOption3);
-    formData.append('question4', selectedOption4);
-    formData.append('question5', selectedOption5);
-    formData.append('question6', selectedOption6);
-    formData.append('question7', selectedOption7);
-    formData.append('question8', selectedOption8);
-    formData.append('question9', selectedOption9);
-    formData.append('question10', selectedOption10);
-    formData.append('question11', selectedOption11);
-    formData.append('question12', selectedOption12);
-    formData.append('question13', selectedOption13);
-    formData.append('question14', selectedOption14);
-    formData.append('question15', selectedOption15);
-    formData.append('question16', selectedOption16);
-    formData.append('question17', selectedOption17);
-    formData.append('question18', selectedOption18);
-    formData.append('question19', selectedOption19);
-    formData.append('question20', selectedOption20);
+    selectedOptions.forEach((options, index) => {
+      options.forEach((option) => {
+        formData.append(`question${index + 1}`, option);
+      });
+    });
+
+
 
     try {
-      
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyjD9Qv8pyaMQsCWNwQPPo67b1-JrL0UgdgHzrAP7tD4YgRC8p0onzBk5ZK-zDIaQbz/exec', {
+      // Submit form data to Google Sheets
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzwwU6AZSiVVz88USAEnL2KhQZSRITDFvLsK4XlFw7y22WTjg3i3XtzJGJ3EnCAtMM/exec',{
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
-       
-        setSelectedOption1('');
-        setSelectedOption2('');
-        setSelectedOption3('');
-        setSelectedOption4('');
-        setSelectedOption5('');
-        setSelectedOption6('');
-        setSelectedOption7('');
-        setSelectedOption8('');
-        setSelectedOption9('');
-        setSelectedOption10('');
-        setSelectedOption11('');
-        setSelectedOption12('');
-        setSelectedOption13('');
-        setSelectedOption14('');
-        setSelectedOption15('');
-        setSelectedOption16('');
-        setSelectedOption17('');
-        setSelectedOption18('');
-        setSelectedOption19('');
-        setSelectedOption20('');
+        // Clear selectedOptions after successful submission
+        setSelectedOptions(Array.from({ length: 20 }, () => []));
+
+        // Navigate to the 'video' component
         navigate('/iteration1');
       } else {
         throw new Error('Failed to submit the form.');
