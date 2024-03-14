@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Survey = () => {
   const [selectedOptions, setSelectedOptions] = useState(new Array(20).fill([]));
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState([]);
 
   const Question = ({ questionNumber, questionText, options }) => (
     <div className="form-group" style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
@@ -15,7 +15,7 @@ const Survey = () => {
             type="radio"
             className="form-check-input"
             id={`q${questionNumber}Option${index + 1}`}
-            name={`question${questionNumber}`} // Ensure the same name for all radio buttons in a question
+            name={`question${questionNumber}`}
             checked={selectedOptions[questionNumber - 1][0] === `option${index + 1}`}
             onChange={() => handleRadioChange(questionNumber, `option${index + 1}`)}
           />
@@ -31,15 +31,43 @@ const Survey = () => {
     const updatedSelectedOptions = [...selectedOptions];
     updatedSelectedOptions[questionNumber - 1] = [optionValue];
     setSelectedOptions(updatedSelectedOptions);
+
+    // Clear the error message for the specific question
+    setErrorMessage((prevErrorMessage) => {
+      const newErrorMessage = [...prevErrorMessage];
+      newErrorMessage[questionNumber - 1] = '';
+      return newErrorMessage;
+    });
+
+    // Check if all questions are answered
+    const allQuestionsAnswered = updatedSelectedOptions.every((options) => options.length > 0);
+
+    // Enable/disable the submit button based on whether all questions are answered
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+      submitButton.disabled = !allQuestionsAnswered;
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage([]);
 
     // Validate if all questions are answered
-    if (selectedOptions.some(options => options.length === 0)) {
-      setErrorMessage('Please answer all questions before submitting.');
+    const isAllQuestionsAnswered = selectedOptions.every((options, index) => {
+      if (options.length === 0) {
+        // Set error message for unanswered question
+        setErrorMessage((prevErrorMessage) => {
+          const newErrorMessage = [...prevErrorMessage];
+          newErrorMessage[index] = 'Please answer this question.';
+          return newErrorMessage;
+        });
+        return false;
+      }
+      return true;
+    });
+
+    if (!isAllQuestionsAnswered) {
       return;
     }
 
@@ -51,9 +79,11 @@ const Survey = () => {
       });
     });
 
+
+
     try {
       // Submit form data to Google Sheets
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec',{
         method: 'POST',
         body: formData,
       });
@@ -61,9 +91,9 @@ const Survey = () => {
       if (response.ok) {
         // Clear selectedOptions after successful submission
         setSelectedOptions(Array.from({ length: 20 }, () => []));
-
+        console.log('submmited')
         // Navigate to the 'video' component
-        navigate('/video');
+        navigate('/test1');
       } else {
         throw new Error('Failed to submit the form.');
       }
@@ -157,12 +187,15 @@ const Survey = () => {
           <Question key={question.questionNumber} {...question} />
         ))}
         <div style={{ margin: '20px auto' }}>
-          {errorMessage && (
-            <div className="alert alert-danger" role="alert">
-              {errorMessage}
-            </div>
-          )}
+          {errorMessage.map((message, index) => (
+            message && (
+              <div key={`error${index}`} className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            )
+          ))}
           <button
+            id="submitButton"
             type="submit"
             className="btn btn-primary"
             style={{
@@ -173,7 +206,7 @@ const Survey = () => {
               padding: '10px 20px',
               cursor: 'pointer',
             }}
-            disabled={errorMessage !== ''}
+            disabled={!selectedOptions.every((options) => options.length > 0)}
           >
             Submit
           </button>
@@ -182,4 +215,5 @@ const Survey = () => {
     </div>
   );
 };
+
 export default Survey;

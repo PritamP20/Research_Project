@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import video from '../assets/video1.mp4'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+
 const Iteration1 = ({option1}) => {
   const navigate = useNavigate()
   let [survey1, setSurvey1] = useState(false);
@@ -14,13 +16,12 @@ const Iteration1 = ({option1}) => {
     })
   }
 
-
-  // var form;
+  var form;
   const submitForm = (e) => {
-    // e.preventDefault()
-    // form = e.target.option.value;
-    // option1(form)
-    // console.log(form)
+    e.preventDefault()
+    form = e.target.option.value;
+    option1(form)
+    console.log(form)
     navigate('/test2')
   }
 

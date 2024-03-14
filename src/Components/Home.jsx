@@ -9,9 +9,9 @@ const Home = ({name, srn, email, cls, phone}) => {
   const handleActivate = (value)=>{
     setActive(value)
   }
-  // const allData = []
-  // var form;  
-  // var data;
+  const allData = []
+  var form;  
+  var data;
   // const submitForm = (e) =>{
   //   e.preventDefault()
   //   form = e.target;
@@ -24,27 +24,38 @@ const Home = ({name, srn, email, cls, phone}) => {
   //   console.log(data)
   //   navigate('/survey')
   // }
-  // const scriptURL = 'https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec'
-  // const handleTest = (e)=>{
-  //   console.log(e)
-  // }
+  
 
-  const submitForm = (e) => {
+  const submitForm = (e) =>{
     e.preventDefault()
-    
+    // form = e.target;
+    // console.log(form)
+    // data = form;
+    // console.log("submit")
+    // fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    //     .then(response => console.log('Success!', response))
+    //     .catch(error => console.error('Error!', error.message))
+    // console.log(data)
+
     console.log(e.target.name.value)
     console.log(e.target.srn.value)
     console.log(e.target.email.value)
     console.log(e.target.class.value)
     console.log(e.target.phone.value)
-    console.log(e.target.test.value)
 
-    // name(e.target.name.value)
-    // srn(e.target.srn.value)
-    // email(e.target.email.value)
-    // cls(e.target.class.value)
-    // phone(e.target.phone.value)
+    name(e.target.name.value)
+    srn(e.target.srn.value)
+    email(e.target.email.value)
+    cls(e.target.class.value)
+    phone(e.target.phone.value)
+
+    // console.log(e.target.test)
     navigate('/survey')
+  }
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec'
+  const handleTest = (e)=>{
+    console.log(e)
   }
   
 

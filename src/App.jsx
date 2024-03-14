@@ -20,6 +20,8 @@ function App() {
   const [cls, setCls] = useState()
   const [phone, setPhone] = useState()
 
+  const [quest1, quest2] = useState()
+
   return (
     <div>
       <div></div>
@@ -29,7 +31,7 @@ function App() {
           <Route path='/' element={<Home name={setName} srn={setSrn} email={setEmail} cls={setCls} phone={setPhone}  />}/>
           <Route path='/survey' element={<Survey/>}/> 
           <Route path='/test1' element={<Iteration1 option1={setOption1}/>}/>
-          <Route path='/test2' element={<Iteration2 name={name} srn={srn} email={email} cls={cls} phone={setPhone} option1={option1} />}/>
+          <Route path='/test2' element={<Iteration2 name={name} srn={srn} email={email} cls={cls} phone={phone} option1={option1} />}/>
           <Route path='/final' element={<Final/>}/>
           <Route path='/audio' element={<AudioRecorder />} />
         </Routes>

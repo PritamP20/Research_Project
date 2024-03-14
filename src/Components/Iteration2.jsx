@@ -27,7 +27,7 @@ const Iteration2 = ({name, cls, srn, email, phone, option1}) => {
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
         .then(response => console.log('Success!', response))
         .catch(error => console.error('Error!', error.message))
-    navigate('/test2')
+    navigate('/audio')
   }
   
   return (
@@ -57,27 +57,27 @@ const Iteration2 = ({name, cls, srn, email, phone, option1}) => {
               <form action="" className='d-flex flex-column' onSubmit={(e)=>{submitForm(e)}}>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='name' required placeholder="Username" value='pritam' aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='name' required placeholder="Username" value={name} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='class' required placeholder="Username" value='cse' aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='class' required placeholder="Username" value={cls} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='srn' required placeholder="Username" value='123456789' aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='srn' required placeholder="Username" value={srn} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='email' required placeholder="Username" value='email@gmail.com' aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='email' required placeholder="Username" value={email} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='phone' required placeholder="Username" value='123456789' ria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='phone' required placeholder="Username" value={phone} ria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='option' required placeholder="Username" value='a1' aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='option' required placeholder="Username" value={option1} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <label>
                   <input type="radio" name="option2" required value='a2' />
@@ -103,6 +103,57 @@ const Iteration2 = ({name, cls, srn, email, phone, option1}) => {
                 <div className=''><button type="submit" className='rounded-2 btn btn-info' >Submit</button></div>
               </form>
       </div>
+      // <div>
+      //   <p>1 What do you think?</p>
+      //         <form action="" className='d-flex flex-column' onSubmit={(e)=>{submitForm(e)}}>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='name' required placeholder="Username" value='pritam' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='class' required placeholder="Username" value='cse' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='srn' required placeholder="Username" value='123456789' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='email' required placeholder="Username" value='email@gmail.com' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='phone' required placeholder="Username" value='123456789' ria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='option' required placeholder="Username" value='a1' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+      //           <label>
+      //             <input type="radio" name="option2" required value='a2' />
+      //             She will be offered a deal that she asked for and she will accept the deal
+      //           </label>
+      //           <label>
+      //             <input type="radio" name="option2" required value='b2'  />
+      //             She will be offered a deal different than what she asked for and she will accept the deal
+      //           </label>
+      //           <label>
+      //             <input type="radio" name="option2" required value="c2"  />
+      //             She will be offered a deal different than what she asked for, and she will reject it.
+      //           </label>
+      //           <label>
+      //             <input type="radio" name="option2" required value="d2" />
+      //             She will not get any offers
+      //           </label>
+      //           <div className="input-group mb-3" hidden >
+      //             <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+      //             <input type="text" className="form-control" name='test' required placeholder="Username" value='vinayak' aria-label="Username" aria-describedby="basic-addon1"/>
+      //           </div>
+
+      //           <div className=''><button type="submit" className='rounded-2 btn btn-info' >Submit</button></div>
+      //         </form>
+      // </div>
 
     }
 
