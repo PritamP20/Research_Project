@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Survey = () => {
-  const [selectedOption1, setSelectedOption1] = useState('');
-  const [selectedOption2, setSelectedOption2] = useState('');
-  const [selectedOption3, setSelectedOption3] = useState('');
-  const [selectedOption4, setSelectedOption4] = useState('');
-  const [selectedOption5, setSelectedOption5] = useState('');
-  const [selectedOption6, setSelectedOption6] = useState('');
-  const [selectedOption7, setSelectedOption7] = useState('');
-  const [selectedOption8, setSelectedOption8] = useState('');
-  const [selectedOption9, setSelectedOption9] = useState('');
-  const [selectedOption10, setSelectedOption10] = useState('');
-  const [selectedOption11, setSelectedOption11] = useState('');
-  const [selectedOption12, setSelectedOption12] = useState('');
-  const [selectedOption13, setSelectedOption13] = useState('');
-  const [selectedOption14, setSelectedOption14] = useState('');
-  const [selectedOption15, setSelectedOption15] = useState('');
-  const [selectedOption16, setSelectedOption16] = useState('');
-  const [selectedOption17, setSelectedOption17] = useState('');
-  const [selectedOption18, setSelectedOption18] = useState('');
-  const [selectedOption19, setSelectedOption19] = useState('');
-  const [selectedOption20, setSelectedOption20] = useState('');
+const Survey = ({setSelectedOption1,setSelectedOption2 ,setSelectedOption3, setSelectedOption4, setSelectedOption5, setSelectedOption6, setSelectedOption7, setSelectedOption8, setSelectedOption9, setSelectedOption10, setSelectedOption11, setSelectedOption12, setSelectedOption13, setSelectedOption14, setSelectedOption15, setSelectedOption16, setSelectedOption17, setSelectedOption18, setSelectedOption19, setSelectedOption20, selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5, selectedOption6, selectedOption7, selectedOption8, selectedOption9, selectedOption10, selectedOption11, selectedOption12, selectedOption13, selectedOption14, selectedOption15, selectedOption16, selectedOption17, selectedOption18, selectedOption19, selectedOption20 }) => {
+  // const [selectedOption1, setSelectedOption1] = useState('');
+  // const [selectedOption2, setSelectedOption2] = useState('');
+  // const [selectedOption3, setSelectedOption3] = useState('');
+  // const [selectedOption4, setSelectedOption4] = useState('');
+  // const [selectedOption5, setSelectedOption5] = useState('');
+  // const [selectedOption6, setSelectedOption6] = useState('');
+  // const [selectedOption7, setSelectedOption7] = useState('');
+  // const [selectedOption8, setSelectedOption8] = useState('');
+  // const [selectedOption9, setSelectedOption9] = useState('');
+  // const [selectedOption10, setSelectedOption10] = useState('');
+  // const [selectedOption11, setSelectedOption11] = useState('');
+  // const [selectedOption12, setSelectedOption12] = useState('');
+  // const [selectedOption13, setSelectedOption13] = useState('');
+  // const [selectedOption14, setSelectedOption14] = useState('');
+  // const [selectedOption15, setSelectedOption15] = useState('');
+  // const [selectedOption16, setSelectedOption16] = useState('');
+  // const [selectedOption17, setSelectedOption17] = useState('');
+  // const [selectedOption18, setSelectedOption18] = useState('');
+  // const [selectedOption19, setSelectedOption19] = useState('');
+  // const [selectedOption20, setSelectedOption20] = useState('');
 
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState();
 
   const Question = ({ number, text, options, setOption }) => (
     <div className="form-group" style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
@@ -36,9 +37,10 @@ const Survey = () => {
             className="form-check-input"
             id={`q${number}Option${index + 1}`}
             name={`q${number}`}
+            // value={option.value}
             checked={eval(`selectedOption${number}`) === `option${index + 1}`}
-            onChange={() => setOption(`option${index + 1}`)}
-          />
+            onChange={() => setOption(`option${index + 1}`)} />
+            
           <label className="form-check-label" htmlFor={`q${number}Option${index + 1}`}>
             {option}
           </label>
@@ -48,6 +50,8 @@ const Survey = () => {
   );
   
   const handleRadioChange = (questionNumber, optionValue) => {
+
+
     switch (questionNumber) {
       case 1:
         setSelectedOption1(optionValue);
@@ -119,6 +123,7 @@ const Survey = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('subing');
     setErrorMessage('');
 
     
@@ -129,37 +134,7 @@ const Survey = () => {
       setErrorMessage('Please answer all questions.');
       return;
     }
-
-    
-    const formData = new FormData();
-    selectedOptions.forEach((options, index) => {
-      options.forEach((option) => {
-        formData.append(`question${index + 1}`, option);
-      });
-    });
-
-
-
-    try {
-      // Submit form data to Google Sheets
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzwwU6AZSiVVz88USAEnL2KhQZSRITDFvLsK4XlFw7y22WTjg3i3XtzJGJ3EnCAtMM/exec',{
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Clear selectedOptions after successful submission
-        setSelectedOptions(Array.from({ length: 20 }, () => []));
-
-        // Navigate to the 'video' component
-        navigate('/iteration1');
-      } else {
-        throw new Error('Failed to submit the form.');
-      }
-    } catch (error) {
-      console.error('Error:', error.message);
-      setErrorMessage('Failed to submit the form. Please try again.');
-    }
+    navigate('/test1')
   };
 
   const questions = [
