@@ -60,15 +60,16 @@ const Home = ({name, srn, email, cls, phone}) => {
   
 
   return (
-    <div className='d-flex justify-content-center align-items-top pt-5 ' style={{height:'90vh'}}>
-      <div className='d-flex flex-column w-75 pt-5'>
+    <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-center align-items-top pt-5 ' style={{height:'90vh', width:'90%'}}>
+      <div className='d-flex flex-column w-100 fs-6'>
         <p className=''>By participating in this assessment, you hereby consent to the recording of the video and screen activity for research purposes. Your consent is voluntary, and you may choose to withdraw from the assessment at any time without penalty.
         If you have any concerns or questions regarding the recording process, please feel free to raise them before proceeding with the assessment. We are committed to ensuring that your participation is both informed and comfortable. Thank you for your cooperation and understanding.</p>
 
         <div className='d-flex justify-content-center align-items-top'>
-          <div className='d-flex flex-column w-50'>
+          <div className='d-flex flex-column w-100'>
             <div className='d-flex justify-content-center align-content-center align-items-center'>
-              <div action="" className='d-flex gap-lg-5 mb-5'>
+              <div action="" className='d-flex gap-5 mb-5'>
                 <label>
                   <input type="radio" name="option" required onClick={()=>handleActivate(true)}  />
                   Agree
@@ -81,23 +82,23 @@ const Home = ({name, srn, email, cls, phone}) => {
             </div>
             <form action="" name='submit-to-google-sheet' onSubmit={(e) => { submitForm(e)}} id='form'>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">Name : </span>
+                <span className="input-group-text col-3" id="basic-addon1">Name : </span>
                 <input type="text" className="form-control" name='name' required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
               </div>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">SRN : </span>
+                <span className="input-group-text col-3" id="basic-addon1">SRN : </span>
                 <input type="text" className="form-control" name='srn' required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
               </div>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">Class : </span>
+                <span className="input-group-text col-3" id="basic-addon1">Class : </span>
                 <input type="text" className="form-control" name='class' required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
               </div>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">Email : </span>
+                <span className="input-group-text col-3" id="basic-addon1">Email : </span>
                 <input type="text" className="form-control" name='email' required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
               </div>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
+                <span className="input-group-text col-3" id="basic-addon1">Phone NO. : </span>
                 <input type="text" className="form-control" name='phone' required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
               </div>
               {/* <div className="input-group mb-3" >
@@ -110,6 +111,7 @@ const Home = ({name, srn, email, cls, phone}) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
     
     

@@ -2,26 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Survey = ({setSelectedOption1,setSelectedOption2 ,setSelectedOption3, setSelectedOption4, setSelectedOption5, setSelectedOption6, setSelectedOption7, setSelectedOption8, setSelectedOption9, setSelectedOption10, setSelectedOption11, setSelectedOption12, setSelectedOption13, setSelectedOption14, setSelectedOption15, setSelectedOption16, setSelectedOption17, setSelectedOption18, setSelectedOption19, setSelectedOption20, selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5, selectedOption6, selectedOption7, selectedOption8, selectedOption9, selectedOption10, selectedOption11, selectedOption12, selectedOption13, selectedOption14, selectedOption15, selectedOption16, selectedOption17, selectedOption18, selectedOption19, selectedOption20 }) => {
-  // const [selectedOption1, setSelectedOption1] = useState('');
-  // const [selectedOption2, setSelectedOption2] = useState('');
-  // const [selectedOption3, setSelectedOption3] = useState('');
-  // const [selectedOption4, setSelectedOption4] = useState('');
-  // const [selectedOption5, setSelectedOption5] = useState('');
-  // const [selectedOption6, setSelectedOption6] = useState('');
-  // const [selectedOption7, setSelectedOption7] = useState('');
-  // const [selectedOption8, setSelectedOption8] = useState('');
-  // const [selectedOption9, setSelectedOption9] = useState('');
-  // const [selectedOption10, setSelectedOption10] = useState('');
-  // const [selectedOption11, setSelectedOption11] = useState('');
-  // const [selectedOption12, setSelectedOption12] = useState('');
-  // const [selectedOption13, setSelectedOption13] = useState('');
-  // const [selectedOption14, setSelectedOption14] = useState('');
-  // const [selectedOption15, setSelectedOption15] = useState('');
-  // const [selectedOption16, setSelectedOption16] = useState('');
-  // const [selectedOption17, setSelectedOption17] = useState('');
-  // const [selectedOption18, setSelectedOption18] = useState('');
-  // const [selectedOption19, setSelectedOption19] = useState('');
-  // const [selectedOption20, setSelectedOption20] = useState('');
+
 
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
