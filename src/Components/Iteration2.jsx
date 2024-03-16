@@ -57,7 +57,7 @@ const Iteration2 = ({name, cls, srn, email, phone, option1,  selectedOption1, se
               <form action="" className='d-flex flex-column' onSubmit={(e)=>{submitForm(e)}}>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>
-                  <input type="text" className="form-control" name='name' required placeholder="Username" value={name} aria-label="Username" aria-describedby="basic-addon1"/>
+                  <input type="text" className="form-control" name='name' required placeholder="Username"  value={name} aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
                 <div className="input-group mb-3" hidden >
                   <span className="input-group-text" id="basic-addon1">Phone NO. : </span>

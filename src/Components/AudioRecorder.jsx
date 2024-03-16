@@ -30,48 +30,24 @@ const AudioRecorder = () => {
     setRecordBlobLink(null);
     setElapsedTime(0);
   };
-
   const submitHandle = async () => {
     if (recordBlobLink) {
       try {
-        // Replace 'YOUR_GOOGLE_SHEET_ID' with the actual ID of your Google Sheet
-        const sheetId = 'AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l'
-        ;
-
-
-
-        
-
-        // Create a new row data
-        const rowData = {
-          Timestamp: new Date().toLocaleString(),
-          'Voice Link': recordBlobLink,
-        };
-
-        // Use fetch or your preferred HTTP library to make a POST request to your server
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzhiJIQWFIzMebM97nXxbntvoLp1J2WFZHeRqrMTXMPbQBF9JEvK1FnfpYStRToy-3l/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            sheetId,
-            rowData,
-          }),
-        });
-
-        if (response.ok) {
-          console.log('Recording submitted successfully.');
-          
+        const reader = new FileReader();
+        reader.readAsDataURL(recordBlobLink);
+  
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          console.log('Base64 Audio Data:', base64data);
+  
           clearHandle();
-        } else {
-          console.error('Failed to submit recording:', response.statusText);
-        }
+        };
       } catch (error) {
         console.error('Error submitting recording:', error);
       }
     }
   };
+  
 
   return (
     <div>
