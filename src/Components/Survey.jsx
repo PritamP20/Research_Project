@@ -30,25 +30,30 @@ const Survey = ({setSelectedOption1,setSelectedOption2 ,setSelectedOption3, setS
   const Question = ({ number, text, options, setOption }) => (
     <div className="form-group" style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
       <label htmlFor={`q${number}`}>{number}. {text}</label>
-      {options.map((option, index) => (
-        <div className="form-check" key={`q${number}Option${index + 1}`}>
-          <input
-            type="radio"
-            className="form-check-input"
-            id={`q${number}Option${index + 1}`}
-            name={`q${number}`}
-            value={option}
-            // checked={eval(`selectedOption${number}`) === `option${index + 1}`}
-            checked={eval(`selectedOption${number}`) === option}
-            onChange={() => handleRadioChange(number, option)}
-          />
-          <label className="form-check-label" htmlFor={`q${number}Option${index + 1}`}>
-            {option}
-          </label>
-        </div>
-      ))}
+      {options.map((option, index) => {
+        // Extracting only the textual part of the option
+        const optionText = option.split('.').slice(1).join('.').trim();
+        
+        return (
+          <div className="form-check" key={`q${number}Option${index + 1}`}>
+            <input
+              type="radio"
+              className="form-check-input"
+              id={`q${number}Option${index + 1}`}
+              name={`q${number}`}
+              value={option}
+              checked={eval(`selectedOption${number}`) === option}
+              onChange={() => handleRadioChange(number, option)}
+            />
+            <label className="form-check-label" htmlFor={`q${number}Option${index + 1}`}>
+              {optionText}
+            </label>
+          </div>
+        );
+      })}
     </div>
   );
+  
   
   const handleRadioChange = (questionNumber, optionValue) => {
 
@@ -139,26 +144,26 @@ const Survey = ({setSelectedOption1,setSelectedOption2 ,setSelectedOption3, setS
   };
 
   const questions = [
-    { number: 1, text: 'Your intelligence is something very basic about you that', options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 2, text: 'No matter how much intelligence you have, you can always change it quite a bit', options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 3, text: 'You can always substantially change how intelligent you are', options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree']  },
-    { number: 4, text: 'You are a certain kind of person, and there is not much that can be done to really change that',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 5, text: 'You can always change basic things about the kind of person you are.',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree']},
-    { number: 6, text: 'Music talent can be learned by anyone',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 7, text: 'Math is much easier to learn if you are male or maybe come from a culture that values math',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 8, text: 'Only a few people will be truly good at sports – you have to be “born with it.”',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 9, text: 'Only a few people will be truly good at sports – you have to be “born with it.”',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 10, text: 'The harder you work at something, the better you will be at it',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 11, text: 'Trying new things is stressful for me and I avoid it ', options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 12, text: 'No matter what kind of person you are, you can always change substantially',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree']},
-    { number: 13, text: 'Some text goes here',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] }, // Corrected text
-    { number: 14, text: 'I appreciate when parents, coaches, teachers give me feedback about my performance',  options: [' Strongly Agree','Agree','Strongly Degree', 'Disagree'] },
-    { number: 15, text: 'I often get angry when I get feedback about my performance', options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 16, text: 'All human beings without a brain injury or birth defect are capable of the same amount of learning',  options: [' Strongly Agree','Agree','Strongly Degree', 'Disagree'] },
-    { number: 17, text: 'You can learn new things, but you can’t really change how intelligent you are',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 18, text: 'You can do things differently, but the important part of who you are can’t really be changed ',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 19, text: 'Human beings are basically good, but sometimes make terrible decisions',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
-    { number: 20, text: 'An important reason why I do my schoolwork is that I like to learn new things',  options: ['4. Strongly Agree',' 3.Agree',' 2.Strongly Degree', '1.Disagree'] },
+    { number: 1, text: 'Your intelligence is something very basic about you that', options: ['0. Strongly Agree',' 1.Agree',' 2.Disagree', '3. StronglyDisagree'] },
+    { number: 2, text: 'No matter how much intelligence you have, you can always change it quite a bit', options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree'] },
+    { number: 3, text: 'You can always substantially change how intelligent you are', options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree']  },
+    { number: 4, text: 'You are a certain kind of person, and there is not much that can be done to really change that',  options: ['0. Strongly Agree',' 1.Agree',' 2. Disagree', '3. Strongly Disagree'] },
+    { number: 5, text: 'You can always change basic things about the kind of person you are.',  options: ['3. Strongly Agree',' 2.Agree',' 1.Disagree', '0.  Strongly Disagree']},
+    { number: 6, text: 'Music talent can be learned by anyone',  options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree'] },
+    { number: 7, text: 'Only a few people will be truly good at sports – you have to be “born with it.”',  options: ['0. Strongly Agree',' 1.Agree',' 2. Disagree', '3. Strongly Disagree'] },
+    { number: 8, text: 'Maths is much easier to learn if you are a male or may be comes from a culture that values math',  options: ['0. Strongly Agree',' 1.Agree',' 2.Disagree', '3. Strongly Disagree'] },
+    { number: 9, text: 'The harder you work at something, the better you will be at it',  options: ['3. Strongly Agree',' 2.Agree',' 1.Disagree', '0.  Strongly Disagree'] },
+    { number: 10, text: 'No matter  what kind of a person u are you can always change substantially',  options: ['3. Strongly Agree',' 2.Agree',' 1.Strongly Degree', '0.Disagree'] },
+    { number: 11, text: 'Trying new things is stressful for me and I avoid it ', options: ['0. Strongly Agree',' 1.Agree',' 2. Disagree', '3. Strongly Disagree'] },
+    { number: 12, text: 'some people are good and kind and some are not-its not often that people change',  options: ['0. Strongly Agree',' 1.Agree',' 2.DisAgree', '3. Strongly Disagree']},
+    { number: 13, text: 'I appreciate when my teachers,couches,parents give me feedback about my performance',  options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree'] }, // Corrected text
+    { number: 14, text: 'I often get angry when I get feedback about my performance',  options: ['0. Strongly Agree','1.Agree',' 2. Disagree', '3. Strongly Disagree'] },
+    { number: 15, text: 'All human beings without a brain injury or birth defect are capable of the same amount of learning', options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree'] },
+    { number: 16, text: 'You can learn new things, but you can’t really change how intelligent you are',  options: ['0. Strongly Agree','1.Agree','2.DisAgree', '1. Strongly Disagree'] },
+    { number: 17, text: 'You can do things differently, but the important part of who you are can’t really be changed ',  options: ['0. Strongly Agree',' 1.Agree',' 2.DisAgree', '3.Strongly Disagree'] },
+    { number: 18, text: 'Human beings are basically good, but sometimes make terrible decisions',  options: ['3. Strongly Agree',' 2.Agree',' 1.Disagree', '0. Strongly Disagree'] },
+    { number: 19, text: 'An important reason why I do my schoolwork is that I like to learn new things',  options: ['3. Strongly Agree',' 2.Agree',' 1. Disagree', '0. Strongly Disagree'] },
+    { number: 20, text: ' Truely smart people do not need to try hard',  options: ['0. Strongly Agree',' 1.Agree',' 2. Strongly Disagree', '3. Disagree'] },
   ];
   return (
     <div className="container mt-5" style={{ backgroundColor: '#f5f5f5', padding: '20px', minHeight: '100vh' }}>
