@@ -263,7 +263,7 @@ const Iteration2 = ({
                 </span>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control" 
                   name="selectedOption5"
                   required
                   placeholder="Username"
