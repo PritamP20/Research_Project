@@ -7,6 +7,7 @@ import Iteration2 from './Components/Iteration2'
 import Final from './Components/Final'
 import Navbar from './Components/Navbar';
 import AudioRecorder from './Components/AudioRecorder';
+import Front from './Components/Front';
 
 
 function App() {
@@ -49,21 +50,26 @@ function App() {
   const [confidence1, setConfidence1] = useState();
 
   return (
-    <div>
-      <div></div>
-      <Router>
-        <Navbar></Navbar>
+   
+    
+    
+      
+      
+        
+        
         <Routes>
-          <Route path='/' element={<Home name={setName} srn={setSrn} email={setEmail} cls={setCls} phone={setPhone}  />}/>
+          <Route path='/' element={<Front />} />
+          <Route path='/home' element={<Home name={setName} srn={setSrn} email={setEmail} cls={setCls} phone={setPhone}  />}/>
           <Route path='/survey' element={<Survey  setSelectedOption1={setSelectedOption1} setSelectedOption2={setSelectedOption2} setSelectedOption3={setSelectedOption3} setSelectedOption4={setSelectedOption4} setSelectedOption5={setSelectedOption5} setSelectedOption6={setSelectedOption6} setSelectedOption7={setSelectedOption7} setSelectedOption8={setSelectedOption8} setSelectedOption9={setSelectedOption9} setSelectedOption10={setSelectedOption10} setSelectedOption11={setSelectedOption11} setSelectedOption12={setSelectedOption12} setSelectedOption13={setSelectedOption13} setSelectedOption14={setSelectedOption14} setSelectedOption15={setSelectedOption15} setSelectedOption16={setSelectedOption16} setSelectedOption17={setSelectedOption17} setSelectedOption18={setSelectedOption18} setSelectedOption19={setSelectedOption19} setSelectedOption20={setSelectedOption20} selectedOption1={selectedOption1} selectedOption2={selectedOption2} selectedOption3={selectedOption3} selectedOption4={selectedOption4} selectedOption5={selectedOption5} selectedOption6={selectedOption6} selectedOption7={selectedOption7} selectedOption8={selectedOption8} selectedOption9={selectedOption9} selectedOption10={selectedOption10} selectedOption11={selectedOption11} selectedOption12={selectedOption12} selectedOption13={selectedOption13} selectedOption14={selectedOption14} selectedOption15={selectedOption15} selectedOption16={selectedOption16} selectedOption17={selectedOption17} selectedOption18={selectedOption18} selectedOption19={selectedOption19} selectedOption20={selectedOption20}/>}/> 
           <Route path='/test1' element={<Iteration1 confidence1={confidence1} setConfidence1={setConfidence1} option1={setOption1}/>}/>
           <Route path='/test2' element={<Iteration2 confidence1={confidence1} name={name} srn={srn} email={email} cls={cls} phone={phone} option1={option1} selectedOption1={selectedOption1} selectedOption2={selectedOption2} selectedOption3={selectedOption3} selectedOption4={selectedOption4} selectedOption5={selectedOption5} selectedOption6={selectedOption6} selectedOption7={selectedOption7} selectedOption8={selectedOption8} selectedOption9={selectedOption9} selectedOption10={selectedOption10} selectedOption11={selectedOption11} selectedOption12={selectedOption12} selectedOption13={selectedOption13} selectedOption14={selectedOption14} selectedOption15={selectedOption15} selectedOption16={selectedOption16} selectedOption17={selectedOption17} selectedOption18={selectedOption18} selectedOption19={selectedOption19} selectedOption20={selectedOption20}  />}/>
           <Route path='/final' element={<Final/>}/>
           <Route path='/audio' element={<AudioRecorder />} />
         </Routes>
-        
-      </Router>
-    </div>
+   
+    
+   
+
   )
 }
 
